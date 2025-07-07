@@ -137,8 +137,7 @@ This project implements dynamic pricing strategies for smart parking lots using 
 
 ## ✅ Deliverables
 
-- Final working notebook: `final_notebook.ipynb`
-- Pathway real-time script: `pathway_pipeline.py`
+- Final working notebook: `SA_2025_FinalCapstoneProject.ipynb`
 - GitHub repository with this README, code, and architecture diagram.
 
 ---
