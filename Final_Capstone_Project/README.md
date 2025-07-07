@@ -21,7 +21,7 @@ This project implements dynamic pricing strategies for smart parking lots using 
    - Read raw parking data.
    - Combine date & time into a timestamp.
    - Sort chronologically and clean invalid entries.
-   - Generate a reduced dataset (`parking_stream.csv`) with relevant features.
+   - Generate a reduced dataset (`proessed_parking.csv`) with relevant features.
 
 2️⃣ **Exploratory Data Analysis (EDA)**  
    - Analyze occupancy, capacity, and time-series trends.
@@ -46,51 +46,23 @@ This project implements dynamic pricing strategies for smart parking lots using 
 
 ---
 
-## 🗺️ Architecture Diagram
+## 📊 Architecture Diagram
 
-┌────────────────────────┐
-│   Raw Parking Data CSV │
-└────────────┬───────────┘
-             │
-             ▼
-┌───────────────────────────────┐
-│     Data Preprocessing        │
-│ - Combine date & time         │
-│ - Clean rows                  │
-│ - Save parking_stream.csv     │
-└────────────┬──────────────────┘
-             │
-             ▼
-┌───────────────────────────────┐
-│ Exploratory Data Analysis     │
-│ - Occupancy distributions     │
-│ - Capacity trends             │
-│ - Time-series plots           │
-└────────────┬──────────────────┘
-             │
-             ▼
-┌───────────────────────────────┐
-│      Pricing Models           │
-│ - Model 1: Linear             │
-│ - Model 2: Demand-based       │
-│ - Model 3: Competitive        │
-└────────────┬──────────────────┘
-             │
-             ▼
-┌───────────────────────────────┐
-│   Pathway Real-Time Pipeline  │
-│ - Ingest parking_stream.csv   │
-│ - Compute live Model 1 & 2    │
-│ - Stream price updates        │
-└────────────┬──────────────────┘
-             │
-             ▼
-┌───────────────────────────────┐
-│    Visualization & Outputs    │
-│ - EDA plots                   │
-│ - Streaming CSV outputs       │
-│ - Optional dashboards         │
-└───────────────────────────────┘
+```mermaid
+flowchart TD
+    A[Raw Parking Data CSV]:::data --> B[Data Preprocessing<br>Combine date/time, clean rows,<br>generate parking_stream.csv]:::process
+    B --> C[EDA<br>Occupancy & capacity analysis,<br>time series plots]:::eda
+    C --> D[Pricing Models<br>Model 1: Linear<br>Model 2: Demand-based<br>Model 3: Competitive]:::models
+    D --> E[Pathway Real-Time Pipeline<br>Stream processed_parking.csv,<br>compute live prices]:::pathway
+    E --> F[Visualization & Outputs<br>EDA plots, Bokeh charts,<br>streaming CSV outputs]:::viz
+
+    classDef data fill:#f9f,stroke:#333,stroke-width:2,color:#000;
+    classDef process fill:#cfc,stroke:#333,stroke-width:2,color:#000;
+    classDef eda fill:#ccf,stroke:#333,stroke-width:2,color:#000;
+    classDef models fill:#ffc,stroke:#333,stroke-width:2,color:#000;
+    classDef pathway fill:#fc9,stroke:#333,stroke-width:2,color:#000;
+    classDef viz fill:#fdd,stroke:#333,stroke-width:2,color:#000;
+```
 
 ---
 
@@ -104,25 +76,11 @@ This project implements dynamic pricing strategies for smart parking lots using 
 
 ## 🚀 How to Run
 
-1. **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-2. **Prepare your data:**
-   - Place your cleaned CSV as `parking_stream.csv` in the root directory.
-
-3. **Run the notebook:**
-   - Open `final_notebook.ipynb` in Jupyter or VS Code.
+1. **Run the notebook:**
+   - Open `SA_2025_FinalCapstoneProject.ipynb` in Jupyter or VS Code.
    - Execute cells sequentially for EDA, Models 1–3, and final plots.
 
-4. **Run the real-time Pathway pipeline:**
-    ```bash
-    python pathway_pipeline.py
-    ```
-
-5. **Check output:**
-   - CSV files with live prices will appear in `stream_output/`.
+2. **Check output:**
    - Plots of occupancy and price trends are generated in the notebook.
 
 ---
@@ -138,6 +96,6 @@ This project implements dynamic pricing strategies for smart parking lots using 
 ## ✅ Deliverables
 
 - Final working notebook: `SA_2025_FinalCapstoneProject.ipynb`
-- GitHub repository with this README, code, and architecture diagram.
+- GitHub repository with this README (with architecture diagram) and code
 
 ---
